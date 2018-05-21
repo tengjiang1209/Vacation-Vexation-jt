@@ -11,18 +11,18 @@
 </head>
 <body>
 <div th:fragment="head">
-    <ul class="layui-nav" lay-filter="">
-        <li class="layui-nav-item name"><span style="font-size: 18px;">休闲假日</span></li>
-        <li class="layui-nav-item layui-this"><a href="">聊天室</a></li>
+    <ul class="layui-nav" lay-filter="demo">
+        <li class="layui-nav-item "><a href="javascript:void(0)">休闲假日</a></li>
+        <li class="layui-nav-item"><a href="javascript:void(0)">聊天室</a></li>
         <li class="layui-nav-item">
-            <a href="javascript:;">娱乐活动</a>
-            <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                <dd><a href="">学习</a></dd>
-                <dd><a href="">学习</a></dd>
-                <dd><a href="">学习</a></dd>
+            <a href="javascript:void(0)">娱乐活动</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:void(0)">学习</a></dd>
+                <dd><a href="javascript:void(0)">学习</a></dd>
+                <dd><a href="javascript:void(0)">学习</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item"><a href="">社区</a></li>
+        <li class="layui-nav-item"><a href="javascript:void(0)">社区</a></li>
     </ul>
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -31,8 +31,7 @@
 
             //监听导航点击
             element.on('nav(demo)', function(elem){
-                //console.log(elem)
-                layer.msg(elem.text());
+                elem.addClass("layui-this");
             });
         });
 
