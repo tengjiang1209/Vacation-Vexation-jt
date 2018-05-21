@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{layui/css/layui.css}" />
+    <script type="text/javascript" th:src="@{layui/layui.js}"/>
+
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+<div th:fragment="head">
+    <ul class="layui-nav" lay-filter="">
+        <li class="layui-nav-item name"><span style="font-size: 18px;">休闲假日</span></li>
+        <li class="layui-nav-item layui-this"><a href="">聊天室</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">娱乐活动</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">学习</a></dd>
+                <dd><a href="">学习</a></dd>
+                <dd><a href="">学习</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+    </ul>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        layui.use('element', function(){
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
+
+        /*]]>*/
+    </script>
+</div>
+
+
+</body>
+</html>
