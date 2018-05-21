@@ -3,36 +3,43 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <meta charset="UTF-8"/>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>博客系统</title>
+    <title>layui</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"  media="all"/>
+    <script type="text/javascript" th:src="@{/layui/layui.js}"/>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">个人博客</a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">博客列表</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        交流区 <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" style="padding-bottom: 8px;padding-top: 8px;">Java板块</a></li>
-                        <li class="divider" style="margin: 0;padding: 0;"></li>
-                        <li><a href="#" style="padding-bottom: 8px;padding-top: 8px;">C++板块</a></li>
-                        <li class="divider" style="margin: 0;padding: 0;"></li>
-                        <li><a href="#" style="padding-bottom: 8px;padding-top: 8px;">Python板块</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><a href="">最新活动</a></li>
+    <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+    <li class="layui-nav-item"><a href="">大数据</a></li>
+    <li class="layui-nav-item">
+        <a href="javascript:;">解决方案</a>
+        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+            <dd><a href="">移动模块</a></dd>
+            <dd><a href="">后台模版</a></dd>
+            <dd><a href="">电商平台</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a href="">社区</a></li>
+</ul>
+
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        // //监听导航点击
+        // element.on('nav(demo)', function(elem){
+        //     //console.log(elem)
+        //     layer.msg(elem.text());
+        // });
+    });
+
+    /*]]>*/
+</script>
+
 </body>
 </html>
