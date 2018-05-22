@@ -3,8 +3,14 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="layout">
 <head>
-
     <title>休闲假日</title>
+    <style type="text/css">
+        .layui-anim {
+            -webkit-animation-duration: .8s;
+            animation-duration: .8s
+        }
+
+    </style>
 </head>
 <body layout:fragment="content">
 <div class="layui-container">
@@ -23,12 +29,66 @@
     </div>
 
     <!--主页面板-->
-    <div>
-        <div class="layui-card">
-            <div class="layui-card-header">最新动态</div>
-            <div class="layui-card-body">
-
+    <div class="layui-row" style="margin: 2px;">
+        <div class="layui-card layui-col-xs12 layui-col-sm4 layui-col-md4">
+            <div class="layui-card-header layui-bg-cyan">新闻资讯
+                <a href="javascript:void(0)" style="float: right;color: #000;">More++</a>
             </div>
+            <div class="layui-card-body" style="border: 1px solid #b2b2b2;height: 30%;">
+                <div>
+                    <span class="layui-breadcrumb" lay-separator="|">
+                      <a href="">娱乐</a>
+                      <a href="">八卦</a>
+                      <a href="">体育</a>
+                      <a href="">搞笑</a>
+                      <a href="">视频</a>
+                      <a href="">游戏</a>
+                      <a href="">综艺</a>
+                    </span>
+                </div>
+                <ul>
+                    <li><a>休闲假日正式开始运营</a><sup>&nbsp;<span class="layui-badge">hot</span></sup></li>
+                    <li><a>大家都有什么好建议？</a></li>
+                    <li><a>欢迎大家</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="layui-col-xs0 layui-col-sm1 layui-col-md1">&nbsp;</div>
+        <div class="layui-card layui-col-xs12 layui-col-sm4 layui-col-md4">
+            <div class="layui-card-header layui-bg-cyan">快速入口</div>
+            <div class="layui-card-body" style="border: 1px solid #b2b2b2;height: 30%;">
+                <ul>
+                    <li>
+                        <i class="layui-anim layui-anim-fadein layui-anim-loop layui-icon layui-icon-reply-fill" style="font-size: 20px; color: #1E9FFF;"></i>
+                        <a href="javascript:void(0)" style="text-underline: #1E9FFF;text-decoration:underline;">快速进入聊天室</a>
+                        <sup>&nbsp;<span class="layui-badge" style="background-color: #FF4040;color: fff;">火爆</span></sup>
+                    </li>
+                    <li>
+                        <i class="layui-icon layui-icon-read" style="font-size: 20px; color: #5FB878;"></i>
+                        <a style="text-underline: #1E9FFF;text-decoration:underline;">灵感来了,写文章！！！</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="layui-col-xs0 layui-col-sm1 layui-col-md1">&nbsp;</div>
+        <div class="layui-card layui-col-xs12 layui-col-sm2 layui-col-md2">
+            <div class="layui-card-header layui-bg-cyan">最新动态
+                <a href="javascript:void(0)" style="float: right;color: #000;">More++</a>
+            </div>
+            <div class="layui-card-body" style="border: 1px solid #b2b2b2;height: 30%;">
+                <ul>
+                    <li><a>休闲假日正式开始运营</a><sup>&nbsp;<span class="layui-badge">精</span></sup></li>
+                    <li><a>大家都有什么好建议？</a><sup>&nbsp;<span class="layui-badge">精</span></sup></li>
+                    <li><a>欢迎大家</a><sup>&nbsp;<span class="layui-badge">精</span></sup></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="height: 300px;width: 100%;text-align: center;">
+        <div style="margin-top: 150px;">
+            <span style="font-size: 20px;">空白区域，暂无内容</span>
         </div>
     </div>
 
@@ -44,6 +104,11 @@
                 //,anim: 'updown' //切换动画方式
             });
         });
+
+
+        $(function(){
+
+        })
 
         /*]]>*/
     </script>

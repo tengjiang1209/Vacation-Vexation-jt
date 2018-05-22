@@ -1,10 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <style type="text/css">
-
-    </style>
 </head>
+
 <body>
 <div th:fragment="header">
     <ul class="layui-nav" lay-filter="demo">
@@ -32,8 +30,26 @@
             });
         });
 
+        $(function(){
+            $(window).scroll(function(event){
+                if($(this).scrollTop()>60){
+                    $(".layui-nav").addClass("nav-fixed");
+                }else{
+                    $(".layui-nav").removeClass("nav-fixed");
+                }
+
+            });
+        })
+
         /*]]>*/
     </script>
+    <style type="text/css">
+        .nav-fixed{
+            position: fixed;
+            z-index:9999;
+            width: 100%;
+        }
+    </style>
 </div>
 </body>
 </html>
