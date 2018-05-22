@@ -1,10 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
 <head>
+
     <title>休闲假日</title>
 </head>
-<body>
-<div th:include="header::head"></div>
+<body layout:fragment="content">
 <div style="margin-top: 1px;">
     <!--<span style="padding-left: 10px;">-->
          <!--生活是一种态度,开心也好,难过也好,选择适合自己的。-->
@@ -21,7 +23,10 @@
     </div>
 </div>
 
-<div th:include="footer::footer"></div>
+<div>
+
+</div>
+
 <script th:inline="javascript">
     /*<![CDATA[*/
     layui.use('carousel', function(){
@@ -37,6 +42,6 @@
 
     /*]]>*/
 </script>
-
+</div>
 </body>
 </html>

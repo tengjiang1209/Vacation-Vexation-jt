@@ -8,16 +8,14 @@
 <body>
 <div th:fragment="footer">
 
-    <div style="text-align: center;position:fixed;bottom: 0;left: 0;right: 0;background-color: #fff">
+    <footer style="text-align: center;position:fixed;bottom: 0;left: 0;right: 0;background-color: #fff">
         <div style="margin-top: 5px;margin-bottom: 5px;">
             <span><img th:src="@{/images/footer/developer.png}" style="height: 20px;width: 20px;"/> :JIANGTENG<img th:src="@{/images/footer/high-grade.png}" style="height: 20px;width: 20px;"/> </span>
             <span style="margin-left: 10px;"><img th:src="@{/images/footer/qq.png}" style="height: 20px;width: 20px;"/> : <a href="javascript:void(0)" onclick="alert('791096114')">791096114</a> </span>
             <span style="margin-left: 10px;"><img th:src="@{/images/footer/web.png}" style="height: 20px;width: 20px;"/> : Vacation-Vexation-jt</span>
             <span style="margin-left: 10px;"><img th:src="@{/images/footer/time.png}" style="height: 20px;width: 20px;"/> : </span><span th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}"></span>
         </div>
-        <div>
-        </div>
-    </div>
+    </footer>
 
 
 
