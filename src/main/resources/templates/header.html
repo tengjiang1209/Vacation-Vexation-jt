@@ -6,8 +6,8 @@
 <body>
 <div th:fragment="header">
     <ul class="layui-nav" lay-filter="demo">
-        <li class="layui-nav-item "><a href="javascript:void(0)">休闲假日</a></li>
-        <li class="layui-nav-item"><a href="javascript:void(0)">聊天室</a></li>
+        <li class="layui-nav-item "><a th:href="@{/index}">休闲假日</a></li>
+        <li class="layui-nav-item"><a th:href="@{/chatRoom}">聊天室</a></li>
         <li class="layui-nav-item">
             <a href="javascript:void(0)">娱乐活动</a>
             <dl class="layui-nav-child">
@@ -37,7 +37,6 @@
                 }else{
                     $(".layui-nav").removeClass("nav-fixed");
                 }
-
             });
         })
 
