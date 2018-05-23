@@ -6,9 +6,9 @@
 <body>
 <div th:fragment="header">
     <ul class="layui-nav" lay-filter="demo">
-        <li class="layui-nav-item "><a th:href="@{/index}">休闲假日</a></li>
-        <li class="layui-nav-item"><a th:href="@{/chatRoom}">聊天室</a></li>
-        <li class="layui-nav-item">
+        <li th:class="${module=='index'}?'layui-nav-item layui-this': 'layui-nav-item'"><a th:href="@{/index}">休闲假日</a></li>
+        <li th:class="${module=='chatRoom'}?'layui-nav-item layui-this': 'layui-nav-item'" ><a th:href="@{/chatRoom}">聊天室</a></li>
+        <li th:class="${module==''}?'layui-nav-item layui-this': 'layui-nav-item'">
             <a href="javascript:void(0)">娱乐活动</a>
             <dl class="layui-nav-child">
                 <dd><a href="javascript:void(0)">学习</a></dd>
@@ -17,7 +17,7 @@
                 <dd><a href="javascript:void(0)">视频</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item"><a th:href="@{/community}">社区</a></li>
+        <li th:class="${module=='community'}?'layui-nav-item layui-this': 'layui-nav-item'"><a th:href="@{/community}">社区</a></li>
     </ul>
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -38,6 +38,8 @@
                     $(".layui-nav").removeClass("nav-fixed");
                 }
             });
+
+            console.log(/*[[${flag}]]*/);
         })
 
         /*]]>*/
