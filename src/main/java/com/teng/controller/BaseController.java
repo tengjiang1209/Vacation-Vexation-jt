@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Component
 public class BaseController {
 
@@ -12,7 +14,8 @@ public class BaseController {
     private String layoutPath;
 
     @ModelAttribute
-    public void layoutUrl(Model model){
-        model.addAttribute("layoutPath",layoutPath);
+    public void layoutUrl(HttpServletRequest request, Model model){
+//        System.out.println(request.getServletPath());
+//        model.addAttribute("layoutPath",layoutPath);
     }
 }
