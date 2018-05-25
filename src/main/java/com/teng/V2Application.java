@@ -24,30 +24,12 @@ public class V2Application {
     private SpringResourceTemplateResolver templateResolver;
 
 
-//    @Autowired
-//    private SpringTemplateEngine springTemplateEngine;
-//
-//
-//    @Bean
-//    public ViewResolver viewResolver(SpringTemplateEngine templateEngine){
-//        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-//        resolver.setTemplateEngine(templateEngine);
-//        return resolver;
-//    }
-//
-//    @Bean
-//    public SpringTemplateEngine templateEngine(TemplateResolver templateResolver){
-//        SpringTemplateEngine engine = new SpringTemplateEngine();
-//        engine.setTemplateResolver(templateResolver);
-//        return engine;
-//    }
-
     @Bean
     public TemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver);
         engine.setEnableSpringELCompiler(true);
-        engine.addDialect(layoutDialect());
+        engine.addDialect(layoutDialect());  // 如果要使用thmeleaf的layout，需要在这里设置才能使用
         return engine;
     }
 
