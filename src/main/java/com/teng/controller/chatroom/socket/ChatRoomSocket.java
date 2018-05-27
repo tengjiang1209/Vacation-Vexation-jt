@@ -1,5 +1,8 @@
 package com.teng.controller.chatroom.socket;
 
+import com.alibaba.fastjson.JSON;
+import com.teng.domain.MsgContent;
+import com.teng.util.SocketEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -7,7 +10,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-@ServerEndpoint(value = "/crserver")
+@ServerEndpoint(value = "/crserver",encoders = {SocketEncoder.class})
 @Component
 public class ChatRoomSocket {
 
@@ -25,6 +28,7 @@ public class ChatRoomSocket {
         this.session = session;
         webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1
+        broadcast(new MsgContent("1",getOnlineCount()));
         System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
     }
 
@@ -32,13 +36,15 @@ public class ChatRoomSocket {
     public void onClose() {
         webSocketSet.remove(this);  //从set中删除
         subOnlineCount();           //在线数减1
+        broadcast(new MsgContent("1",getOnlineCount()));
         System.out.println("有一连接关闭！当前在线人数为" + getOnlineCount());
     }
 
     @OnMessage
-    public void onMessage(String message, Session session) throws IOException {
-        System.out.println("来自客户端的消息:" + message);
-        broadcast(message);
+    public void onMessage(String msgContent, Session session) throws IOException {
+          System.out.println("来自客户端的消息:" + msgContent);
+            System.out.println(JSON.parseObject(msgContent,MsgContent.class));
+          broadcast(JSON.parseObject(msgContent,MsgContent.class));
     }
 
     @OnError
@@ -48,15 +54,17 @@ public class ChatRoomSocket {
     }
 
 
-    public void sendMessage(String message) throws IOException {
-        this.session.getBasicRemote().sendText(message);
+    public void sendMessage(MsgContent msgContent) throws IOException, EncodeException {
+//        this.session.getBasicRemote().sendText(message);
+        System.out.println("发送消息："+msgContent.toString());
+        this.session.getBasicRemote().sendObject(msgContent);
     }
 
-    public static void broadcast(String message) throws IOException {
+    public static void broadcast(MsgContent msgContent) {
         for (ChatRoomSocket socket : webSocketSet) {
             try {
-                socket.sendMessage(message);
-            } catch (IOException e) {
+                socket.sendMessage(msgContent);
+            } catch (Exception e) {
                 continue;
             }
         }
