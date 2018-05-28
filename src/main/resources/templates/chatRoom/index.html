@@ -21,18 +21,26 @@
                 <div class="layui-col-xs8 layui-col-sm8 layui-col-md8">
                     <div class="layui-col-xs12 layui-col-sm12 layui-col-md12" style="height: 80%;border: 1px solid #b2b2b2;">
                         <div class="content" style="height:98%;overflow: auto ;overflow-x: hidden;">
-
+                            <div>
+                                <div>
+                                    <img th:src="@{/images/user.jpg}">
+                                    <span style="font-size: 18px;color: gray;">用户1</span>
+                                </div>
+                                <div>This is message！</div>
+                            </div>
                         </div>
                     </div>
                     <div class="layui-col-xs12 layui-col-sm12 layui-col-md12" style="height: 20%;border: 1px solid #b2b2b2;">
+                           <div style="height: 20%;">
+                               功能区
+                           </div>
                            <textarea id="msg" class=""
-                                     style="height: 95%;width:90%"></textarea>
+                                     style="height: 75%;width:90%"></textarea>
                            <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="send()"
                                     style="margin-top: -25px;">发送</button>
                     </div>
                 </div>
                 <div class="layui-col-xs4 layui-col-sm4 layui-col-md4" style="height: 100%;border: 1px solid #b2b2b2;">
-
                         公共聊天室，欢迎畅聊<br/>
 
                         注意事项：<br/>
@@ -40,7 +48,6 @@
                          2、不得进行人身攻击<br/>
                          3、不得恶意攻击网站<br/>
                          4、请文明用语<br/>
-
                     <div>
                         <span>当前在线人数：</span>
                         <a href="javascript:alert('暂不不支持查看在线信息')" id="count"
@@ -49,6 +56,8 @@
                 </div>
             </div>
         </div>
+
+
 
     <script th:inline="javascript">
         /*<![CDATA[*/
