@@ -5,6 +5,10 @@
       th:with="module='chatRoom'">
 <head>
     <title>聊天室-首页</title>
+    <script type="text/javascript" th:src="@{/qqFace/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/qqFace/js/jquery.qqFace.js}"></script>
+    <link rel="stylesheet" th:href="@{/qqFace/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/qqFace/css/reset.css}" />
     <style type="text/css">
 
     </style>
@@ -21,32 +25,32 @@
                 <div class="layui-col-xs8 layui-col-sm8 layui-col-md8">
                     <div class="layui-col-xs12 layui-col-sm12 layui-col-md12" style="height: 80%;border: 1px solid #b2b2b2;">
                         <div class="content" style="height:98%;overflow: auto ;overflow-x: hidden;">
-                            <div style="margin-top: 5px;margin-left: 15px;">
-                                <div>
-                                    <img th:src="@{/images/chatRoom/user.png}" style="height: 16px;width: 16px;">
-                                    <span style="font-size: 12px;color: gray;">用户1</span>
-                                    <span style="font-size: 12px;color: gray;margin-left: 15px;">2018-05-28 18:00:00</span>
+                            <div class="clone_out" hidden="hidden">
+                                <div class="clone_in" style="margin-top: 5px;margin-left: 15px;">
+                                    <div>
+                                        <img th:src="@{/images/chatRoom/user.png}" style="height: 16px;width: 16px;">
+                                        <span class="name" style="font-size: 12px;color: gray;">[匿名用户]</span>
+                                        <span class="time" style="font-size: 12px;color: gray;margin-left: 15px;">2018-05-28 18:00:00</span>
+                                    </div>
+                                    <div class="message">This is message！</div>
                                 </div>
-                                <div>This is message！</div>
-                            </div>
-                            <div style="margin-top: 5px;margin-left: 15px;">
-                                <div>
-                                    <img th:src="@{/images/chatRoom/user.png}" style="height: 16px;width: 16px;">
-                                    <span style="font-size: 12px;color: gray;">用户2</span>
-                                    <span style="font-size: 12px;color: gray;margin-left: 15px;">2018-05-28 18:00:00</span>
-                                </div>
-                                <div>This is message！</div>
                             </div>
                         </div>
                     </div>
                     <div class="layui-col-xs12 layui-col-sm12 layui-col-md12" style="height: 20%;border: 1px solid #b2b2b2;">
-                           <div style="height: 20%;">
-                               功能区
+                           <div>
+                               <div class="comment">
+                                   <div class="com_form">
+                                       <p style="height: 20%;padding: 5px;cursor: pointer;">
+                                           <span class="emotion">表情</span>
+                                       </p>
+                                       <textarea id="msg"
+                                                 style="height: 75%;width:90%;resize: none;"></textarea>
+                                       <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="send()"
+                                               style="margin-top: -25px;">发送</button>
+                                   </div>
+                               </div>
                            </div>
-                           <textarea id="msg" class=""
-                                     style="height: 75%;width:90%"></textarea>
-                           <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="send()"
-                                    style="margin-top: -25px;">发送</button>
                     </div>
                 </div>
                 <div class="layui-col-xs4 layui-col-sm4 layui-col-md4" style="height: 100%;border: 1px solid #b2b2b2;">
@@ -72,11 +76,10 @@
         /*<![CDATA[*/
         var websocket = null;
 
-        //判断当前浏览器是否支持WebSocket
         if('WebSocket' in window){
-            websocket = new WebSocket("ws://localhost:8088/vv/crserver");
+            websocket = new WebSocket("ws://localhost:8080/vv/crserver");
         }else if('MozWebSocket' in window){
-            websocket = new MozWebSocket("ws://localhost:8088/vv/crserver");
+            websocket = new MozWebSocket("ws://localhost:8080/vv/crserver");
         }else{
             alert('您的浏览器不支持websocket！！！')
         }
@@ -95,7 +98,10 @@
             if(obj.type=="1"){
                 $("#count").text(obj.count);
             }else{
-                $(".content").append(obj.msg+"<br/>");
+                let $chatDiv = $(".clone_out .clone_in").clone(true);
+                $chatDiv.find(".time").text($("#time").text());
+                $chatDiv.find(".message").html(replace_em(obj.msg));
+                $(".content").append($chatDiv);
                 $('.content').scrollTop($('.content')[0].scrollHeight);
             }
         }
@@ -122,7 +128,17 @@
                     event.preventDefault();
                 }
             });
+
+            $('.emotion').qqFace({
+                assign:'msg',
+                path:/*[[@{/qqFace/arclist/}]]*/
+            });
         })
+
+        function replace_em(str){
+            let regex = /\[em_([0-9]*)\]/g;
+            return str.replace(regex,'<img src=[[@{/qqFace/arclist/$1.gif}]] border="0" />');
+        }
 
 
         //发送消息
